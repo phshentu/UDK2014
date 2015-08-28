@@ -1,0 +1,289 @@
+This readme.txt is the same as: UDK2014.SP1.P1-ReleaseNotes-MyWorkSpace.txt
+================================================================================
+Intel(R) UEFI Development Kit (UDK) 2014 SP1 P1 Release
+
+File: UDK2014.SP1.Complete.MyWorkSpace.zip
+
+SVN Versions
+https://svn.code.sf.net/p/edk2/code/branches/UDK2014.SP1: r16557
+https://svn.code.sf.net/p/edk2-fatdriver2/code/trunk/FatPkg: r92
+
+December 30th, 2014
+================================================================================
+
+================================================================================
+                                   DISCLAIMER
+================================================================================
+This release note as well as the software described in it is furnished under license
+and may only be used or copied in accordance with the terms of the license. The
+information in this manual is furnished for informational use only, is subject to
+change without notice, and should not be construed as a commitment by Intel Corporation.
+Intel Corporation assumes no responsibility or liability for any errors or inaccuracies
+that may appear in this document or any software that may be provided in association
+with this document.
+
+Except as permitted by such license, no part of this document may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any means without
+the express written consent of Intel Corporation.
+
+================================================================================
+                              ADDITIONAL DISCLAIMER
+================================================================================
+This release is targeted for Core Packages Release only.
+This code is based upon the EDK II code base as found on the UEFI Open Source 
+Community Website (URL:www.tianocore.org).
+
+================================================================================
+                                     INDEX
+================================================================================
+1.  FILES LIST
+2.  REFERENCE PLATFORMS
+3.  HOW TO BUILD (WINDOWS SYSTEM)
+4.  HOW TO BUILD (UNIX-LIKE SYSTEM)
+5.  NEW FEATURES AND CHANGES
+6.  CORE UPGRADE NOTES
+7.  KNOWN ISSUES
+8.  MISC
+
+================================================================================
+                                   FILES LIST
+================================================================================
+1.  "UDK2014.SP1.P1-ReleaseNotes-MyWorkSpace.txt"
+    Release notes for entire UEFI Development Kit (UDK) 2014 SP1 Release
+
+2.  "BaseTools(Windows).zip"
+3.  "BaseTools(Unix).tar"
+
+
+4.  UDK2014.SP1.P1.MyWorkSpace.zip (expand into the following Directories)
+    1)  "CryptoPkg"
+    2)  "EdkCompatibilityPkg"
+    3)  "EdkShellBinPkg"
+    4)  "FatBinPkg"
+    5)  "IntelFrameworkModulePkg"
+    6)  "IntelFrameworkPkg"
+    7)  "MdeModulePkg"
+    8)  "MdePkg"
+    9)  "PcAtChipsetPkg"
+    10) "PerformancePkg"
+    11) "ShellBinPkg"
+    12) "ShellPkg"
+    13) "UefiCpuPkg"
+    14) "Nt32Pkg"
+    15) "DuetPkg"
+    16) "NetworkPkg"
+    17) "SecurityPkg"
+    18) "SourceLevelDebugPkg"
+    19) "FatPkg"
+
+
+5.  "Documents" Directory
+        a) "CryptoPkg Document.chm"
+        b) "CryptoPkg Document.zip"
+        c) "EdkCompatibilityPkg Document.chm"
+        d) "EdkCompatibilityPkg Document.zip"
+        e) "IntelFrameworkModulePkg Document.chm"
+        f) "IntelFrameworkModulePkg Document.zip"
+        g) "IntelFrameworkPkg Document.chm"
+        h) "IntelFrameworkPkg Document.zip"
+        i) "MdeModulePkg Document.chm"
+        j) "MdeModulePkg Document.zip"
+        k) "MdePkg Document With Libraries.chm"
+        l) "MdePkg Document With Libraries.zip"
+        m) "MdePkg Document.chm"
+        n) "MdePkg Document.zip"
+        o) "NetworkPkg Document With Modules.chm"
+        p) "NetworkPkg Document With Modules.zip"
+        q) "SecurityPkg Document With Modules.chm"
+        r) "SecurityPkg Document With Modules.zip"
+
+
+
+================================================================================
+                            REFERENCE PLATFORMS
+================================================================================
+1. Desktop - [Nt32Pkg]
+  Nt32Pkg\Nt32Pkg.dsc
+
+2. DUET - UEFI Simulation Environment directly on Hardware (via boot process)
+
+There are some feature flags defined by MACROs as listed below. They are introduced
+in DSC/FDF files to help a user easily support the specific features.
+
+  1) SECURE_BOOT_ENABLE : Provides access for generic authentication information
+                          associated with specific device path.
+                          
+  2) TPM_UID_ENABLE     : Provides TCG-defined service, and user identification
+                          feature.
+                          
+  3) IP6_NETWORK_ENABLE : Provides Ipv6 network stack support.
+  
+  4) DUAL_NETWORK_ENABLE: Provides both Ipv4 and Ipv6 network stacks support.
+  
+  5) SOURCE_DEBUG_ENABLE: Provides source debugging feature.
+
+For example, the user could support secure boot in firmware by running command:
+"build -D SECURE_BOOT_ENABLE"
+
+================================================================================
+                          HOW TO BUILD ON A WINDOWS SYSTEM
+================================================================================
+Windows System Configuration:
+  Microsoft Windows 7 Ultimate 64-bit*
+
+1.  Setup Build Environment
+    1)  Install Microsoft Visual Studio 2008* SP1 in the build machine and make
+        sure that AMD64 complier was selected when installing.
+
+2.  Extract Common Source Code
+        Extract files in [UDK2014.SP1.P1.MyWorkSpace.zip]  to the working space directory (e.g C:). Note the
+        Directory "MyWorkSpace" will be created as a result.
+        In this case, it is C:\MyWorkSpace. There are two BaseTools package one
+        is for Windows system and another is for UNIX-Like system. Please make
+        sure BaseTools(Windows).zip is used here. Expand the appropriate BaseTools to C:\MyWorkSpace
+
+3.  Generate OpenSSL* Crypto Library
+    1)  Open file "C:\MyWorkSpace\CryptoPkg\Library\OpensslLib\Patch-HOWTO.txt"
+        and follow the instruction to install OpenSSL* for UEFI building.
+    NOTE: The instruction is verified by WinZip 18.0 on Microsoft Windows 7 
+          Ultimate 64-bit*
+
+4.  Build Steps
+    *** NT32 ***
+    1)  Open a command prompt, type command "cd C:\MyWorkSpace" to enter the
+        workspace directory, and then type command "edksetup --NT32" to initialize the
+        working environment.
+    2)  Type below commands to build platforms
+        "build -t VS2008x86 
+
+There are two methods to select the tool chain (Use Microsoft Visual Studio 2008*
+as sample):
+
+1. Update TOOL_CHAIN_TAG in file Conf/target.txt: TOOL_CHAIN_TAG = VS2008
+
+2. Add -t build option in command line: "build -t VS2008 ... "
+
+If the development system is a Windows 64-bit system and you are installing 32-bit Visual Studion VS2008
+then you must enter "VS2008x86" instead of "VS2008" as written in the above example.
+
+Please refer to tools_def.txt for all supported tool chains and detailed descriptions.
+
+NOTE: The file "tools_def.txt" will be created within the "Conf" directory during the execution of 
+      "edksetup".
+
+================================================================================
+                         HOW TO BUILD (UNIX-LIKE SYSTEM)
+================================================================================
+Unix-Like System Configuration:
+  ubuntu 12.04 LTS*
+
+1.  Extract Common Source Code
+    1)  Create the working space directory on the build machine:
+
+         ~/src/MyWorkSpace
+   
+    2)  Extract files in [UDK2014.SP1.P1.MyWorkSpace] the working space directory.
+        In this case, it is ~/src/MyWorkSpace. 
+
+     NOTE:   There are two BaseTools package one is for Windows system 
+             and another is for UNIX-Like system. Please make sure 
+              BaseTools(Unix).tar is used here.
+   
+3.  Generate OpenSSL* Crypto Library
+    1)  Open file "~/src/MyWorkSpace/CryptoPkg/Library/OpensslLib/Patch-HOWTO.txt"
+        and follow the instruction to install OpenSSL* for UEFI building.
+    NOTE: The instruction is verified by tar command (tar -xzvf openssl-0.9.8zb.tar.zb) 
+          on ubuntu 12.04 LTS*
+
+4.  Setup Build Environment
+    1)  Follow instructions for setting up the build environment on tianocore.org.
+        "http://tianocore.sourceforge.net/wiki/Using_EDK_II_with_Native_GCC"
+
+        a) Please make note that when "~/src/edk2" is referenced, you must use 
+           "~/src/MyWorkSpace" instead
+
+        b) Make sure all of the BaseTools are built and that required software
+          (i.e. iASL compiler) has been installed.
+
+        c) You must understand that some operations require the user to switch to
+           "root" to execute.
+       
+        d) At Unbuntu, you can type "sudo apt-get install git" under terminal to
+           install git.
+
+    2)  Install NASM 2.0.7 or later from http://www.nasm.us/.
+ 
+        At the Linux Unbuntu prompt, you can type "sudo apt-get install nasm" under terminal to 
+        install it.
+
+5.  Build Steps
+    *** Nt32 ***
+    1)  Open a terminal and type "cd ~/src/MyWorkSpace" to enter the workspace
+        directory.
+
+    2)  Initialize the build environment by typing ". edksetup.sh BaseTools".
+
+    3)  Type below commands to build platforms
+ 
+       "build -t GCC46 "
+        
+
+================================================================================
+                             CHANGES AND BUG FIXES
+================================================================================
+1.  BaseTools:
+    1) Add ConvertMasmToNasm.py script.
+    2) Support EDKII style GUID definition for VFR function.
+    3) Modify gcc tool chains definition to support building from Windows.
+    4) Fix an issue of storing wrong PCD into XML file.
+    5) Correct slash and quote handling in the strings of UNI files.
+2.  MdePkg ACPI: Add PlatformNotification field to ACPI 5.0 PCCT structure.
+3.  MdePkg/MdeModulePkg: Implement the missing SetMemorySpaceCapabilities function.
+4.  MdeModulePkg DxeCore: Fix potential FV overflow of 4GB boundary on a 32-bit
+    systems.
+5:  MdeModulePke PeiCore: Fix firmwareVolmeInfoPpiNotifyCallback ()issue.
+6.  MdeModulePkg SmmCore: Checking if gSmmCorePrivate->CommunicationBuffer is in
+    supported physical address scope.
+7.  MdeModulePkg AtaAtapiPassThru:
+    1) Don't write read-only AHCI MMIO register.
+    2) Check PxTFD.Error register when D2H FIS received at PIO DATA-IN transfer.
+    3) Don't set PxSACT bit when issuing command.
+8.  MdeModulePkg BaseSerialPortLib16550: Correct MemoryLimit and MemoryBase offset.
+9.  MdeModulePkg FirmwarePerformanceDataTableDxe: Unregister DXE FpdtStatusCodeHandler.
+10. Network:
+    1) SnpDxe  : Fix a bug that not all NIC device implement both memory and IO bar.
+    2) Dhcp6Dxe: Fix a bug in DHCP6 driver when using DUID LLT.
+NOTE:
+    This section describes the difference based on Intel(R) UEFI Development
+    Kit (UDK) 2014 SP1 Release.
+
+================================================================================
+                              CORE UPGRADE NOTES
+================================================================================
+1.  MdeModulePkg\Core\PiSmmCore\PiSmmCore.inf is updated:
+    Please add the following library instance for SMM_CORE in platform DSC file.
+      [LibraryClasses.common.SMM_CORE]
+        HobLib|MdePkg\Library\DxeHobLib\DxeHobLib.inf
+NOTE:
+    This section describes the difference based on Intel(R) UEFI Development
+    Kit (UDK) 2014 SP1 Release.
+
+================================================================================
+                                  KNOWN ISSUES
+================================================================================
+1.  "edksetup.bat" can't support the directory which has spaces, so please use
+    such as "MyMorkspace" as the work environment but not "My Workspace".
+2.  Refer to package notes for other known issues.
+
+================================================================================
+                                      MISC
+================================================================================
+1.  EDKII documentation can be got from http://sourceforge.net/projects/edk2/files/.
+    General Documentation: EDKII User Manual and EDK II Module Writer's Guide.
+    Specifications: EDKII Build, FDF, INF, DSC, DEC and VFR Specification.
+2.  Virus scanned by McAfee VirusScan Enterprise 8.8.0, Virus Definitions 7665,
+    no virus detected.
+
+* Other names and brands may be claimed as the property of others.
+
+[END OF RELEASE NOTES]

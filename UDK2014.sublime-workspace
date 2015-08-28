@@ -1,0 +1,592 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"gA",
+				"gAppRT"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "Searching 4810 files for \"ShellWriteFile\"\n\n/Users/pshentu/software/UDK2014/MyWorkSpace/ShellPkg/Include/Library/ShellLib.h:\n  254  EFI_STATUS\n  255  EFIAPI\n  256: ShellWriteFile(\n  257    IN SHELL_FILE_HANDLE          FileHandle,\n  258    IN OUT UINTN                  *BufferSize,\n\n/Users/pshentu/software/UDK2014/MyWorkSpace/ShellPkg/Library/UefiShellDebug1CommandsLib/DmpStore.c:\n  332    gBS->CalculateCrc32 (Buffer, (UINTN) (Ptr - Buffer), (UINT32 *) Ptr);\n  333  \n  334:   Status = ShellWriteFile (FileHandle, &BufferSize, Buffer);\n  335    FreePool (Buffer);\n  336  \n\n/Users/pshentu/software/UDK2014/MyWorkSpace/ShellPkg/Library/UefiShellDebug1CommandsLib/Edit/FileBuffer.c:\n 1518    if (FileBuffer.FileType == FileTypeUnicode) {\n 1519      Length  = 2;\n 1520:     Status  = ShellWriteFile (FileHandle, &Length, (VOID*)&gUnicodeFileTag);\n 1521      if (EFI_ERROR (Status)) {\n 1522        ShellDeleteFile (&FileHandle);\n ....\n 1566      if (LeftSize < Length) {\n 1567        Size    = TotalSize - LeftSize;\n 1568:       Status  = ShellWriteFile (FileHandle, &Size, Cache);\n 1569        if (EFI_ERROR (Status)) {\n 1570          ShellDeleteFile (&FileHandle);        \n ....\n 1609    if (TotalSize != LeftSize) {\n 1610      Size    = TotalSize - LeftSize;\n 1611:     Status  = ShellWriteFile (FileHandle, &Size, Cache);\n 1612      if (EFI_ERROR (Status)) {\n 1613        ShellDeleteFile (&FileHandle);\n\n/Users/pshentu/software/UDK2014/MyWorkSpace/ShellPkg/Library/UefiShellDebug1CommandsLib/HexEdit/FileImage.c:\n  366    }\n  367  \n  368:   Status = ShellWriteFile (FileHandle, &TotalSize, Buffer);\n  369    FreePool (Buffer);\n  370    if (EFI_ERROR (Status)) {\n\n/Users/pshentu/software/UDK2014/MyWorkSpace/ShellPkg/Library/UefiShellDriver1CommandsLib/DrvCfg.c:\n  225    }\n  226  \n  227:   Status = ShellWriteFile(FileHandle, &MainBufferSize, MainBuffer);\n  228  \n  229    ShellCloseFile(&FileHandle);\n\n/Users/pshentu/software/UDK2014/MyWorkSpace/ShellPkg/Library/UefiShellLevel2CommandsLib/Cp.c:\n  228          Status = ShellReadFile(SourceHandle, &ReadSize, Buffer);\n  229          if (!EFI_ERROR(Status)) {\n  230:           Status = ShellWriteFile(DestHandle, &ReadSize, Buffer);\n  231            if (EFI_ERROR(Status)) {\n  232              ShellStatus = (SHELL_STATUS) (Status & (~MAX_BIT));\n\n/Users/pshentu/software/UDK2014/MyWorkSpace/ShellPkg/Library/UefiShellLib/UefiShellLib.c:\n  836  EFI_STATUS\n  837  EFIAPI\n  838: ShellWriteFile(\n  839    IN SHELL_FILE_HANDLE          FileHandle,\n  840    IN OUT UINTN                  *BufferSize,\n\n9 matches across 7 files\n\n\nSearching 4810 files for \"AsciiStrToUnicodeStr\"\n\n/Users/pshentu/software/UDK2014/MyWorkSpace/DuetPkg/SmbiosGenDxe/SmbiosGen.c:\n   74    UString = AllocateZeroPool ((AsciiStrLen(AString) + 1) * sizeof(CHAR16));\n   75    ASSERT (UString != NULL);\n   76:   AsciiStrToUnicodeStr (AString, UString);\n   77  \n   78    Token = HiiSetString (gStringHandle, 0, UString, NULL);\n   ..\n  142    ASSERT (UString != NULL);\n  143    CopyMem (UString, FIRMWARE_BIOS_VERSIONE, sizeof(FIRMWARE_BIOS_VERSIONE));\n  144:   AsciiStrToUnicodeStr (AString, UString + sizeof(FIRMWARE_BIOS_VERSIONE) / sizeof(CHAR16) - 1);\n  145  \n  146    Token = HiiSetString (gStringHandle, 0, UString, NULL);\n  ...\n  172    ASSERT (UString != NULL);\n  173    CopyMem (UString, FIRMWARE_PRODUCT_NAME, sizeof(FIRMWARE_PRODUCT_NAME));\n  174:   AsciiStrToUnicodeStr (AString, UString + sizeof(FIRMWARE_PRODUCT_NAME) / sizeof(CHAR16) - 1);\n  175  \n  176    Token = HiiSetString (gStringHandle, 0, UString, NULL);\n\n/Users/pshentu/software/UDK2014/MyWorkSpace/IntelFrameworkModulePkg/Universal/BdsDxe/FrontPage.c:\n  451          StringBuffer = AllocatePool (AsciiStrSize (Lang) * sizeof (CHAR16));\n  452          ASSERT (StringBuffer != NULL);\n  453:         AsciiStrToUnicodeStr (Lang, StringBuffer);\n  454        }\n  455  \n  ...\n  703    } else {\n  704      *String = AllocatePool (StrSize * sizeof (CHAR16));\n  705:     AsciiStrToUnicodeStr (OptionalStrStart, *String);\n  706    }\n  707  \n\n/Users/pshentu/software/UDK2014/MyWorkSpace/MdeModulePkg/Universal/HiiDatabaseDxe/ConfigRouting.c:\n 1175          goto Done;\n 1176        }\n 1177:       AsciiStrToUnicodeStr ((CHAR8 *) IfrEfiVarStore->Name, VarStoreName);\n 1178  \n 1179        GenerateSubStr (L\"GUID=\", sizeof (EFI_GUID), (VOID *) &IfrEfiVarStore->Guid, 1, &GuidStr);\n ....\n 1396          goto Done;\n 1397        }\n 1398:       AsciiStrToUnicodeStr ((CHAR8 *)IfrVarStore->Name, VarStoreName);\n 1399  \n 1400        if (IsThisVarstore((VOID *)&IfrVarStore->Guid, VarStoreName, ConfigHdr)) {\n ....\n 1410          goto Done;\n 1411        }\n 1412:       AsciiStrToUnicodeStr ((CHAR8 *)IfrEfiVarStore->Name, VarStoreName);\n 1413  \n 1414        if (IsThisVarstore (&IfrEfiVarStore->Guid, VarStoreName, ConfigHdr)) {\n ....\n 1651          goto Done;\n 1652        }\n 1653:       AsciiStrToUnicodeStr ((CHAR8 *)IfrVarStore->Name, VarStoreName);\n 1654  \n 1655        if (IsThisVarstore((VOID *)&IfrVarStore->Guid, VarStoreName, ConfigHdr)) {\n ....\n 1689          goto Done;\n 1690        }\n 1691:       AsciiStrToUnicodeStr ((CHAR8 *)IfrEfiVarStore->Name, VarStoreName);\n 1692  \n 1693        if (IsThisVarstore (&IfrEfiVarStore->Guid, VarStoreName, ConfigHdr)) {\n ....\n 3358      goto Done;\n 3359    }\n 3360:   AsciiStrToUnicodeStr ((CHAR8 *) EfiVarStoreInfo->Name, VarStoreName);\n 3361     \n 3362    \n ....\n 3433      goto Done;\n 3434    }\n 3435:   AsciiStrToUnicodeStr ((CHAR8 *) EfiVarStoreInfo->Name, VarStoreName);\n 3436        \n 3437    Status = gRT->GetVariable (VarStoreName, &EfiVarStoreInfo->Guid, NULL, &BufferSize, NULL);\n\n/Users/pshentu/software/UDK2014/MyWorkSpace/MdeModulePkg/Universal/Network/IScsiDxe/IScsiConfig.c:\n  381    IScsiIpToStr (&SessionConfigData->TargetIp, IfrNvData->TargetIp);\n  382  \n  383:   IScsiAsciiStrToUnicodeStr (SessionConfigData->TargetName, IfrNvData->TargetName);\n  384  \n  385    IScsiLunToUnicodeStr (SessionConfigData->BootLun, IfrNvData->BootLun);\n  ...\n  394    IfrNvData->CHAPType = AuthConfigData->CHAPType;\n  395  \n  396:   IScsiAsciiStrToUnicodeStr (AuthConfigData->CHAPName, IfrNvData->CHAPName);\n  397:   IScsiAsciiStrToUnicodeStr (AuthConfigData->CHAPSecret, IfrNvData->CHAPSecret);\n  398:   IScsiAsciiStrToUnicodeStr (AuthConfigData->ReverseCHAPName, IfrNvData->ReverseCHAPName);\n  399:   IScsiAsciiStrToUnicodeStr (AuthConfigData->ReverseCHAPSecret, IfrNvData->ReverseCHAPSecret);\n  400  }\n  401  \n  ...\n  516      IfrNvData->InitiatorName[0] = L'\\0';\n  517    } else {\n  518:     IScsiAsciiStrToUnicodeStr (InitiatorName, IfrNvData->InitiatorName);\n  519    }\n  520  \n\n/Users/pshentu/software/UDK2014/MyWorkSpace/MdeModulePkg/Universal/Network/IScsiDxe/IScsiMisc.c:\n  241  **/\n  242  CHAR16 *\n  243: IScsiAsciiStrToUnicodeStr (\n  244    IN  CHAR8   *Source,\n  245    OUT CHAR16  *Destination\n\n/Users/pshentu/software/UDK2014/MyWorkSpace/MdeModulePkg/Universal/Network/IScsiDxe/IScsiMisc.h:\n   96  **/\n   97  CHAR16 *\n   98: IScsiAsciiStrToUnicodeStr (\n   99    IN  CHAR8   *Source,\n  100    OUT CHAR16  *Destination\n\n/Users/pshentu/software/UDK2014/MyWorkSpace/MdePkg/Include/Library/BaseLib.h:\n 1223  CHAR16 *\n 1224  EFIAPI\n 1225: AsciiStrToUnicodeStr (\n 1226    IN      CONST CHAR8               *Source,\n 1227    OUT     CHAR16                    *Destination\n\n/Users/pshentu/software/UDK2014/MyWorkSpace/MdePkg/Library/BaseLib/String.c:\n 1991  CHAR16 *\n 1992  EFIAPI\n 1993: AsciiStrToUnicodeStr (\n 1994    IN      CONST CHAR8               *Source,\n 1995    OUT     CHAR16                    *Destination\n\n/Users/pshentu/software/UDK2014/MyWorkSpace/NetworkPkg/IScsiDxe/IScsiConfig.c:\n  391    }\n  392  \n  393:   AsciiStrToUnicodeStr (SessionConfigData->TargetName, IfrNvData->TargetName);\n  394    IScsiLunToUnicodeStr (SessionConfigData->BootLun, IfrNvData->BootLun);\n  395    IScsiConvertIsIdToString (IfrNvData->IsId, SessionConfigData->IsId);\n  ...\n  406      AuthConfigData      = &Attempt->AuthConfigData.CHAP;\n  407      IfrNvData->CHAPType = AuthConfigData->CHAPType;\n  408:     AsciiStrToUnicodeStr (AuthConfigData->CHAPName, IfrNvData->CHAPName);\n  409:     AsciiStrToUnicodeStr (AuthConfigData->CHAPSecret, IfrNvData->CHAPSecret);\n  410:     AsciiStrToUnicodeStr (AuthConfigData->ReverseCHAPName, IfrNvData->ReverseCHAPName);\n  411:     AsciiStrToUnicodeStr (AuthConfigData->ReverseCHAPSecret, IfrNvData->ReverseCHAPSecret);\n  412    }\n  413  \n  ...\n  415    // Other parameters.\n  416    //\n  417:   AsciiStrToUnicodeStr (Attempt->AttemptName, IfrNvData->AttemptName);\n  418  }\n  419  \n  ...\n  587        }      \n  588        \n  589:       AsciiStrToUnicodeStr (Attempt->AttemptName, AttemptName1);\n  590        if (StrLen (AttemptName1) > ATTEMPT_NAME_SIZE) {\n  591          CopyMem (&AttemptName1[ATTEMPT_NAME_SIZE], L\"...\", 4 * sizeof (CHAR16));\n  592        }\n  593  \n  594:       AsciiStrToUnicodeStr (SameNicAttempt->AttemptName, AttemptName2);\n  595        if (StrLen (AttemptName2) > ATTEMPT_NAME_SIZE) {\n  596          CopyMem (&AttemptName2[ATTEMPT_NAME_SIZE], L\"...\", 4 * sizeof (CHAR16));\n  ...\n  647    }\n  648  \n  649:   AsciiStrToUnicodeStr (Attempt->MacString, MacString);\n  650  \n  651    UnicodeSPrint (\n  ...\n 1071      AttemptConfigData = NET_LIST_USER_STRUCT (Entry, ISCSI_ATTEMPT_CONFIG_NVDATA, Link);\n 1072  \n 1073:     AsciiStrToUnicodeStr (AttemptConfigData->AttemptName, AttemptName);\n 1074      UnicodeSPrint (mPrivate->PortString, (UINTN) 128, L\"Attempt %s\", AttemptName);\n 1075      AttemptConfigData->AttemptTitleToken = HiiSetString (\n ....\n 1200      }\n 1201  \n 1202:     AsciiStrToUnicodeStr (AttemptConfigData->MacString, MacString);\n 1203  \n 1204      UnicodeSPrint (\n ....\n 1926      IfrNvData->InitiatorName[0] = L'\\0';\n 1927    } else {\n 1928:     AsciiStrToUnicodeStr (InitiatorName, IfrNvData->InitiatorName);\n 1929    }\n 1930  \n\n/Users/pshentu/software/UDK2014/MyWorkSpace/NetworkPkg/IScsiDxe/IScsiDriver.c:\n  516      Session->AuthType   = AttemptConfigData->AuthenticationType;\n  517  \n  518:     AsciiStrToUnicodeStr (AttemptConfigData->MacString, MacString);\n  519      UnicodeSPrint (\n  520        mPrivate->PortString,\n\n/Users/pshentu/software/UDK2014/MyWorkSpace/NetworkPkg/IScsiDxe/IScsiMisc.c:\n 1096            // Refresh the state of this attempt to NVR.\n 1097            //\n 1098:           AsciiStrToUnicodeStr (AttemptTmp->MacString, MacString);\n 1099            UnicodeSPrint (\n 1100              mPrivate->PortString,\n ....\n 1135          // Refresh the state of this attempt to NVR.\n 1136          //\n 1137:         AsciiStrToUnicodeStr (AttemptTmp->MacString, MacString);\n 1138          UnicodeSPrint (\n 1139            mPrivate->PortString,\n ....\n 1225        // Refresh the state of this attempt to NVR.\n 1226        //\n 1227:       AsciiStrToUnicodeStr (AttemptConfigData->MacString, MacString);\n 1228        UnicodeSPrint (\n 1229          mPrivate->PortString,\n\n/Users/pshentu/software/UDK2014/MyWorkSpace/PerformancePkg/Dp_App/DpTrace.c:\n  211  \n  212        // If Handle is non-zero, see if we can determine a name for the driver\n  213:       AsciiStrToUnicodeStr (Measurement.Module, mGaugeString); // Use Module by default\n  214:       AsciiStrToUnicodeStr (Measurement.Token, mUnicodeToken);\n  215        if (Measurement.Handle != NULL) {\n  216          // See if the Handle is in the HandleBuffer\n  ...\n  579        }\n  580        mGaugeString[0] = 0;    // Empty driver name by default\n  581:       AsciiStrToUnicodeStr (Measurement.Token, mUnicodeToken);\n  582        // See if the Handle is in the HandleBuffer\n  583        for (Index = 0; Index < (Size / sizeof(HandleBuffer[0])); Index++) {\n  ...\n  743                            &Measurement.Identifier)) != 0)\n  744    {\n  745:     AsciiStrToUnicodeStr (Measurement.Module, mGaugeString);\n  746:     AsciiStrToUnicodeStr (Measurement.Token, mUnicodeToken);\n  747      mGaugeString[25] = 0;\n  748      mUnicodeToken[31] = 0;\n\n/Users/pshentu/software/UDK2014/MyWorkSpace/ShellPkg/Library/UefiDpLib/DpTrace.c:\n  211  \n  212        // If Handle is non-zero, see if we can determine a name for the driver\n  213:       AsciiStrToUnicodeStr (Measurement.Module, mGaugeString); // Use Module by default\n  214:       AsciiStrToUnicodeStr (Measurement.Token, mUnicodeToken);\n  215        if (Measurement.Handle != NULL) {\n  216          // See if the Handle is in the HandleBuffer\n  ...\n  579        }\n  580        mGaugeString[0] = 0;    // Empty driver name by default\n  581:       AsciiStrToUnicodeStr (Measurement.Token, mUnicodeToken);\n  582        // See if the Handle is in the HandleBuffer\n  583        for (Index = 0; Index < (Size / sizeof(HandleBuffer[0])); Index++) {\n  ...\n  741                            &Measurement.Identifier)) != 0)\n  742    {\n  743:     AsciiStrToUnicodeStr (Measurement.Module, mGaugeString);\n  744:     AsciiStrToUnicodeStr (Measurement.Token, mUnicodeToken);\n  745      mGaugeString[25] = 0;\n  746      mUnicodeToken[31] = 0;\n\n48 matches across 13 files\n\n\nSearching 4810 files for \"SetTimeCapabalities\nEFI_TIME_CAPABILITIES\"\n\n0 matches\n\nSearching 4810 files for \"SetTimeCapabalities\nEFI_TIME_CAPABILITIES\"\n\n0 matches\n\nSearching 4810 files for \"EFI_TIME_CAPABILITIES\"\n\n/Users/pshentu/software/UDK2014/MyWorkSpace/MdePkg/Include/Library/UefiRuntimeLib.h:\n   77  EfiGetTime (\n   78    OUT EFI_TIME                    *Time,\n   79:   OUT EFI_TIME_CAPABILITIES       *Capabilities  OPTIONAL\n   80    );\n   81  \n\n/Users/pshentu/software/UDK2014/MyWorkSpace/MdePkg/Include/Uefi/UefiSpec.h:\n  728    ///\n  729    BOOLEAN   SetsToZero;\n  730: } EFI_TIME_CAPABILITIES;\n  731  \n  732  /**\n  ...\n  747  (EFIAPI *EFI_GET_TIME)(\n  748    OUT  EFI_TIME                    *Time,\n  749:   OUT  EFI_TIME_CAPABILITIES       *Capabilities OPTIONAL\n  750    );\n  751  \n\n/Users/pshentu/software/UDK2014/MyWorkSpace/MdePkg/Library/UefiRuntimeLib/RuntimeLib.c:\n  269  EfiGetTime (\n  270    OUT EFI_TIME                    *Time,\n  271:   OUT EFI_TIME_CAPABILITIES       *Capabilities  OPTIONAL\n  272    )\n  273  {\n\n/Users/pshentu/software/UDK2014/MyWorkSpace/Nt32Pkg/RealTimeClockRuntimeDxe/RealTimeClock.c:\n   55  WinNtGetTime (\n   56    OUT EFI_TIME                                 *Time,\n   57:   OUT EFI_TIME_CAPABILITIES                    *Capabilities OPTIONAL\n   58    )\n   59  /*++\n\n/Users/pshentu/software/UDK2014/MyWorkSpace/PcAtChipsetPkg/PcatRealTimeClockRuntimeDxe/PcRtc.c:\n  338  PcRtcGetTime (\n  339    OUT  EFI_TIME               *Time,\n  340:   OUT  EFI_TIME_CAPABILITIES  *Capabilities,  OPTIONAL\n  341    IN   PC_RTC_MODULE_GLOBALS  *Global\n  342    )\n  ...\n  682    RTC_REGISTER_B        RegisterB;\n  683    UINT8                 Century;\n  684:   EFI_TIME_CAPABILITIES Capabilities;\n  685  \n  686    ZeroMem (&RtcTime, sizeof (RtcTime));\n\n/Users/pshentu/software/UDK2014/MyWorkSpace/PcAtChipsetPkg/PcatRealTimeClockRuntimeDxe/PcRtc.h:\n  194  PcRtcGetTime (\n  195    OUT EFI_TIME              *Time,\n  196:   OUT EFI_TIME_CAPABILITIES *Capabilities, OPTIONAL\n  197    IN  PC_RTC_MODULE_GLOBALS *Global\n  198    );\n\n/Users/pshentu/software/UDK2014/MyWorkSpace/PcAtChipsetPkg/PcatRealTimeClockRuntimeDxe/PcRtcEntry.c:\n   37  PcRtcEfiGetTime (\n   38    OUT EFI_TIME                *Time,\n   39:   OUT EFI_TIME_CAPABILITIES   *Capabilities  OPTIONAL\n   40    )\n   41  {\n\n9 matches across 7 files\n",
+			"settings":
+			{
+				"buffer_size": 15294,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "MyWorkSpace/MdePkg/Include/Uefi/UefiSpec.h",
+			"settings":
+			{
+				"buffer_size": 83809,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/Users/pshentu/software/DTSCOM/DTSCOM0616/DTSCOM.c",
+			"settings":
+			{
+				"buffer_size": 177595,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/pshentu/software/UDK2014/MyWorkSpace/ShellPkg/Application",
+		"/Users/pshentu/software/DTSCOM/DTSCOM0616"
+	],
+	"file_history":
+	[
+		"/Users/pshentu/software/UDK2014/MyWorkSpace/MdePkg/Include/Library/UefiRuntimeLib.h",
+		"/Users/pshentu/software/UDK2014/MyWorkSpace/ShellPkg/Library/UefiShellDebug1CommandsLib/Edit/FileBuffer.c",
+		"/Users/pshentu/software/UDK2014/MyWorkSpace/PcAtChipsetPkg/PcatRealTimeClockRuntimeDxe/PcRtc.c",
+		"/Users/pshentu/software/UDK2014/MyWorkSpace/ShellPkg/Library/UefiShellDebug1CommandsLib/DmpStore.c",
+		"/Users/pshentu/software/UDK2014/MyWorkSpace/MdeModulePkg/Universal/Acpi/FirmwarePerformanceDataTableSmm/FirmwarePerformanceSmm.c",
+		"/Users/pshentu/software/UDK2014/MyWorkSpace/DuetPkg/Library/DuetTimerLib/X86TimerLib.c",
+		"/Users/pshentu/software/UDK2014/MyWorkSpace/CryptoPkg/Library/BaseCryptLib/SysCall/TimerWrapper.c",
+		"/Users/pshentu/software/kivy/src/Contents/MacOS/Kivy",
+		"/Users/pshentu/software/kivy.sublime-project",
+		"/Users/pshentu/software/kivy/kivy.sublime-project",
+		"/Users/pshentu/software/kivy/src/Contents/Info.plist",
+		"/Users/pshentu/Library/Caches/TemporaryItems/Outlook Temp/Log/O_W007149148_20150320085704_StatusInfo.txt",
+		"/Users/pshentu/Library/Caches/TemporaryItems/Outlook Temp/Log/O_W007149101_20150320000200_StatusInfo.txt",
+		"/Users/pshentu/Library/Caches/TemporaryItems/Outlook Temp/Log/O_W007149039_20150319213241_StatusInfo.txt",
+		"/Users/pshentu/Library/Caches/TemporaryItems/Outlook Temp/Log/O_W007149039_20150319213241_Procedure.txt"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Users/pshentu/software/UDK2014",
+			"/Users/pshentu/software/kivy/src/Contents/Resources/kivy/kivy/adapters"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"EFI_TIME_CAPABILITIES",
+			"SetTimeCapabalities\nEFI_TIME_CAPABILITIES",
+			"SetTimeCapabalities",
+			"g_AppRT",
+			"SetTimeCapabalities",
+			"AsciiStrToUnicodeStr",
+			"AsciitoUnicode",
+			"ShellWriteFile",
+			"GetTime",
+			"ObjectProperty"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15294,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										163,
+										177
+									],
+									[
+										488,
+										502
+									],
+									[
+										782,
+										796
+									],
+									[
+										1036,
+										1050
+									],
+									[
+										1280,
+										1294
+									],
+									[
+										1551,
+										1565
+									],
+									[
+										1800,
+										1814
+									],
+									[
+										2137,
+										2151
+									],
+									[
+										2427,
+										2441
+									],
+									[
+										2828,
+										2848
+									],
+									[
+										3076,
+										3096
+									],
+									[
+										3376,
+										3396
+									],
+									[
+										3787,
+										3807
+									],
+									[
+										3951,
+										3971
+									],
+									[
+										4174,
+										4194
+									],
+									[
+										4415,
+										4435
+									],
+									[
+										4636,
+										4656
+									],
+									[
+										4856,
+										4876
+									],
+									[
+										5077,
+										5097
+									],
+									[
+										5285,
+										5305
+									],
+									[
+										5424,
+										5444
+									],
+									[
+										5805,
+										5825
+									],
+									[
+										6055,
+										6075
+									],
+									[
+										6139,
+										6159
+									],
+									[
+										6227,
+										6247
+									],
+									[
+										6325,
+										6345
+									],
+									[
+										6518,
+										6538
+									],
+									[
+										6738,
+										6758
+									],
+									[
+										6962,
+										6982
+									],
+									[
+										7165,
+										7185
+									],
+									[
+										7411,
+										7431
+									],
+									[
+										7650,
+										7670
+									],
+									[
+										8025,
+										8045
+									],
+									[
+										8106,
+										8126
+									],
+									[
+										8191,
+										8211
+									],
+									[
+										8286,
+										8306
+									],
+									[
+										8450,
+										8470
+									],
+									[
+										8590,
+										8610
+									],
+									[
+										8835,
+										8855
+									],
+									[
+										9085,
+										9105
+									],
+									[
+										9293,
+										9313
+									],
+									[
+										9554,
+										9574
+									],
+									[
+										9736,
+										9756
+									],
+									[
+										9990,
+										10010
+									],
+									[
+										10293,
+										10313
+									],
+									[
+										10523,
+										10543
+									],
+									[
+										10743,
+										10763
+									],
+									[
+										11057,
+										11077
+									],
+									[
+										11152,
+										11172
+									],
+									[
+										11418,
+										11438
+									],
+									[
+										11707,
+										11727
+									],
+									[
+										11775,
+										11795
+									],
+									[
+										12088,
+										12108
+									],
+									[
+										12183,
+										12203
+									],
+									[
+										12449,
+										12469
+									],
+									[
+										12738,
+										12758
+									],
+									[
+										12806,
+										12826
+									],
+									[
+										13338,
+										13359
+									],
+									[
+										13540,
+										13561
+									],
+									[
+										13682,
+										13703
+									],
+									[
+										13923,
+										13944
+									],
+									[
+										14185,
+										14206
+									],
+									[
+										14449,
+										14470
+									],
+									[
+										14650,
+										14671
+									],
+									[
+										14915,
+										14936
+									],
+									[
+										15200,
+										15221
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								13554,
+								13554
+							]
+						],
+						"settings":
+						{
+							"detect_indentation": false,
+							"line_numbers": false,
+							"output_tag": 5,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 4402.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "MyWorkSpace/MdePkg/Include/Uefi/UefiSpec.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 83809,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								28679,
+								28689
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 10720.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/Users/pshentu/software/DTSCOM/DTSCOM0616/DTSCOM.c",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 177595,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								15801,
+								15801
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4642.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "UDK2014.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 210.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
